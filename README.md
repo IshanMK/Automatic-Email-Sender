@@ -28,7 +28,7 @@ npm install
 
   ![g0KEXurtTr](https://user-images.githubusercontent.com/73387606/176176082-eaf287ed-6d78-4cf1-a6c7-657db499eb3b.png)
 
-* Click on <code>select app</code>
+* Click on <code>select app</code> and choose the option <code>Other<i>(Custom name)</i></code>
 
   ![68Nseu72IZ](https://user-images.githubusercontent.com/73387606/176176387-e9038aaf-978f-4a81-9c7a-f628701b4967.png)
 
