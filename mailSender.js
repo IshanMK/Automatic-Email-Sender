@@ -6,6 +6,7 @@
  */
 
 import moment from "moment";
+import details from "./structure.js";
 import { scheduleJob } from "node-schedule";
 import nodemailer from "nodemailer";
 import * as dotenv from "dotenv"; //Read the .env file
@@ -13,14 +14,15 @@ dotenv.config({ path: ".env.auth" }); //Read the .env file
 
 class MailSender {
   // Constructor to set the email list
-  constructor(emailList, regDate) {
+  constructor(emailList, regDate, property) {
     this.emailList = emailList;
     this.regDate = regDate;
+    this.property = property;
   }
 
   // Mail sending Function
   async sendEmail() {
-    console.log(moment().format("HH:mm:ss"));
+    // console.log(moment().format("HH:mm:ss"));
 
     //All the security_configs are in a seperate file for security purposes
     const transporter = nodemailer.createTransport({
@@ -53,9 +55,7 @@ class MailSender {
 
       // This would be the text of email body
       text:
-        "Hi! There, You know I am using the" +
-        " NodeJS Code along with NodeMailer " +
-        "to send this email.",
+        typeof this.property != "undefined" ? this.property : "Unknown Content",
 
       attachments: [
         {
