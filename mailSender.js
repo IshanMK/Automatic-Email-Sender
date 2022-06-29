@@ -55,7 +55,7 @@ class MailSender {
 
       // This would be the text of email body
       text:
-        typeof this.property != "undefined" ? this.property : "Unknown Content",
+        this.property != undefined ? details[this.property] : "Unknown Content",
 
       attachments: [
         {
