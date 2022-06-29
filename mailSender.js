@@ -2,7 +2,7 @@
  * E / 18 / 173
  * Kasthuripitiya K.A.I.M.
  * Automated Mail Sender
- * 28/06/2022
+ * 29/06/2022
  */
 
 import moment from "moment";
@@ -55,7 +55,9 @@ class MailSender {
 
       // This would be the text of email body
       text:
-        this.property != undefined ? details[this.property] : "Unknown Content",
+        details[this.property] !== undefined
+          ? details[this.property]
+          : details.unknown,
 
       attachments: [
         {
