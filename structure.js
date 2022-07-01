@@ -1,10 +1,16 @@
 const content = {
-  admin: `Hello Wolrd
-Testing 
-Messages`,
-  notify: `You have 2 weeks remaining for submission`,
-  regSuccess: `Registration was successfull`,
-  unknown: "Unknown Content",
+  admin: {
+    message: "Registration was Successfull!",
+    subject: "Registration",
+  },
+  notify: {
+    message: "You Have 2 weeks Remaining For the Submission",
+    subject: "Deadline",
+  },
+  regSuccess: {
+    message: "Regsitration Was Successfull",
+    subject: "Registration",
+  },
 };
 
 export default content;
