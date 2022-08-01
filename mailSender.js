@@ -19,7 +19,7 @@ const sendEmail = async (options) => {
 
   //All the security_configs are in a seperate file for security purposes
   // If the user tried to access unknown property this won't be executed
-  if (details[options.property] !== undefined) {
+  if (details[options.state] !== undefined) {
     const transporter = nodemailer.createTransport({
       host: process.env.HOST,
       port: process.env.HOSTPORT,
@@ -46,10 +46,10 @@ const sendEmail = async (options) => {
       // cc: secure_configuration.EMAIL_LIST_CC,
 
       // Subject of Email
-      subject: details[options.property].subject,
+      subject: details[options.state].subject,
 
       // This would be the text of email body
-      text: details[options.property].message,
+      text: details[options.state].message,
       // html: `<h2>${details[options.property].message}</h2>`,
 
       // attachments: [

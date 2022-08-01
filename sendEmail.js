@@ -11,7 +11,7 @@ try {
     emailList,
     scheduledDate: moment().add(5, "s").format(),
     sender: "Administrator",
-    property: "notify",
+    state: "notify",
   });
 } catch (err) {
   console.log(err);
