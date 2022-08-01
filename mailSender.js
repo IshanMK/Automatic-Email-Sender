@@ -5,7 +5,7 @@
  * 01/08/2022
  */
 
-import moment from "moment";
+// Importing the required modules
 import details from "./structure.js";
 import { scheduleJob } from "node-schedule";
 import nodemailer from "nodemailer";
@@ -15,8 +15,6 @@ dotenv.config({ path: ".env.auth" }); //Read the .env file
 // Mail sending Function
 
 const sendEmail = async (options) => {
-  // console.log(moment().format("HH:mm:ss"));
-
   //All the security_configs are in a seperate file for security purposes
   // If the user tried to access unknown property this won't be executed
   if (details[options.state] !== undefined) {
@@ -60,6 +58,7 @@ const sendEmail = async (options) => {
       // ],
     };
 
+    // Schedule the mail sending
     await scheduleJob(new Date(options.scheduledDate), () => {
       // verify connection configuration
       transporter.verify(function (error, success) {
