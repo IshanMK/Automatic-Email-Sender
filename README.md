@@ -56,13 +56,18 @@ npm install
 * Just Provide the <code>Date-Time_TimeZone</code> you want to send the email
 * eg : <code>2022-06-28T18:16:45+05:30</code>
 
-![hIjRS0Fmnx](https://user-images.githubusercontent.com/73387606/176185073-c00478fc-cfc6-4da2-8982-f7e15fed57ff.png)
+
+![CrnUp34mPH](https://user-images.githubusercontent.com/73387606/182071735-1474e417-6599-4b3b-a6a5-b313277ca432.png)
 
 
 ## Start Sending Mails
 * After doing all the above steps just run the following code from your terminal
 ```sh
 node sendEmail
+```
+  or
+```sh
+npm start
 ```
 
 [Find More About moment module](https://momentjs.com/)
