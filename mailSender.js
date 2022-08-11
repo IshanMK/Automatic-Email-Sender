@@ -2,11 +2,10 @@
  * E / 18 / 173
  * Kasthuripitiya K.A.I.M.
  * Automated Mail Sender
- * 01/08/2022
+ * 11/08/2022
  */
 
 // Importing the required modules
-import details from "./structure.js";
 import { scheduleJob } from "node-schedule";
 import nodemailer from "nodemailer";
 import * as dotenv from "dotenv"; //Read the .env file
@@ -17,7 +16,7 @@ dotenv.config({ path: ".env.auth" }); //Read the .env file
 const sendEmail = async (options) => {
   //All the security_configs are in a seperate file for security purposes
   // If the user tried to access unknown property this won't be executed
-  if (details[options.state] !== undefined) {
+  if (options.recipients !== undefined && options.content !== undefined) {
     const transporter = nodemailer.createTransport({
       host: process.env.HOST,
       port: process.env.HOSTPORT,
@@ -31,10 +30,12 @@ const sendEmail = async (options) => {
 
     const mailConfigurations = {
       // It should be a string of sender email
-      from: `${options.sender} ${process.env.EMAIL_USERNAME}`,
+      from: `${
+        options.sender !== undefined ? options.sender : "Unknwon Sender"
+      } ${process.env.EMAIL_USERNAME}`,
 
       // Comma Separated list of mails
-      bcc: options.emailList,
+      bcc: options.recipients,
 
       // reply-to field
       replyTo: `do not reply to this email ${process.env.EMAIL_USERNAME}`,
@@ -44,10 +45,10 @@ const sendEmail = async (options) => {
       // cc: secure_configuration.EMAIL_LIST_CC,
 
       // Subject of Email
-      subject: details[options.state].subject,
+      subject: options.subject,
 
       // This would be the text of email body
-      text: details[options.state].message,
+      text: options.content,
       // html: `<h2>${details[options.property].message}</h2>`,
 
       // attachments: [
@@ -59,17 +60,14 @@ const sendEmail = async (options) => {
     };
 
     // Schedule the mail sending
-    await scheduleJob(new Date(options.scheduledDate), () => {
-      // verify connection configuration
-      transporter.verify(function (error, success) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Server is ready to take our messages");
-
-          if (mailConfigurations.bcc.length !== 0) {
-            //
-            console.log("email list is not empty!");
+    if (options.scheduledDate !== undefined) {
+      await scheduleJob(new Date(options.scheduledDate), () => {
+        // verify connection configuration
+        transporter.verify(function (error, success) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log("Server is ready to take our messages");
 
             // Send Mail to the given list of mails , if sending fails log it to the console
             transporter.sendMail(mailConfigurations, (err, info) => {
@@ -77,15 +75,15 @@ const sendEmail = async (options) => {
               console.log("email Sent Successfully");
               console.log(info);
             });
-          } else {
-            console.log("empty mail list..!!");
-            return;
           }
-        }
+        });
       });
-    });
+    } else {
+      // If the scheduled date is not provided
+      console.log(`Please Provide a date and time to start sending emails!!`);
+    }
   } else {
-    console.log(`Unknown Property Accessed!!`);
+    console.error(`recipients list and email content cannot be empty!!`);
   }
 };
 

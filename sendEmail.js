@@ -8,10 +8,11 @@ let emailList = ["ishanmaduranga271@gmail.com", "e18173@eng.pdn.ac.lk"];
 
 try {
   await sendEmail({
-    emailList,
+    recipients: emailList,
     scheduledDate: moment().add(5, "s").format(),
     sender: "Administrator",
-    state: "notify",
+    subject: "Sending emails using nodemailer...",
+    content: "This is a test",
   });
 } catch (err) {
   console.log(err);
