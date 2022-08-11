@@ -52,12 +52,13 @@ npm install
   ![1DcgISgMHz](https://user-images.githubusercontent.com/73387606/176180194-bcaa47b4-d2e9-4a5c-aa96-c04d84be76e3.png)
 
 ## Setting Up sendEmail.js
-* Provide the <code>emailList</code> with the receipients mails seperated by commas
-* Just Provide the <code>Date-Time_TimeZone</code> you want to send the email
+* Provide the <code>recipients</code> with an array of recipients mails seperated by commas as strings.If there is only single recipient no need an array of recipients.Just provide the single email as a string
+* Just Provide the <code>scheduledDate</code> with the <code>Date-Time_TimeZone</code> you want to send the email
 * eg : <code>2022-06-28T18:16:45+05:30</code>
+* Provide <code>sender</code> , <code>subject</code> and <code>content</code> as you want
 
+![4Mwynv1nzD](https://user-images.githubusercontent.com/73387606/184113776-e9e4c1ca-ed2c-47a8-aacc-e878602c64a7.png)
 
-![CrnUp34mPH](https://user-images.githubusercontent.com/73387606/182071735-1474e417-6599-4b3b-a6a5-b313277ca432.png)
 
 
 ## Start Sending Mails
